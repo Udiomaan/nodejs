@@ -6,6 +6,10 @@ var options = {
 
 var server = restify.createServer(options);
 
+server.use(restify.bodyParser({
+  maxBodySize: 10 * 1024
+}));
+
 server.on('after', restify.auditLogger({
   log: bunyan.createLogger({
     name: 'audit',
